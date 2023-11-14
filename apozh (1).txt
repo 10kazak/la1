@@ -1,0 +1,110 @@
+﻿// lab11.cpp: определяет точку входа для консольного приложения.
+//
+
+#include "stdafx.h"
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#include <malloc.h>
+#include <conio.h>
+#include <locale.h>
+#include <string.h>
+#include <windows.h>
+
+int main(void)
+{
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	setvbuf(stdin, NULL, _IONBF, 0);
+	setvbuf(stdout, NULL, _IONBF, 0);
+	int i, num_search, zach;
+	char search[20];
+	struct student
+	{
+		char famil[20];
+		char name[20], facult[20];
+		int Nomzach;
+	} stud[3];
+
+	for (i = 0; i < 3; i++)
+	{
+		printf("Введите фамилию студента\n");
+		scanf("%s", &stud[i].famil);
+	}
+	for (i = 0; i < 3; i++)
+	{
+		printf("Введите имя студента %s\n", stud[i].famil);
+		scanf("%s", &stud[i].name);
+	}
+	for (i = 0; i < 3; i++)
+	{
+		printf("Введите название факультета студента %s %s\n", stud[i].famil, stud[i].name);
+		scanf("%s", &stud[i].facult);
+	}
+	for (i = 0; i < 3; i++)
+	{
+		printf("Введите номер зачётной книжки студента %s %s\n", stud[i].famil, stud[i].name);
+		scanf("%d", &stud[i].Nomzach);
+	}
+
+	for (i = 0; i < 3; i++)
+	{
+		printf("Cтудент %s %s обучается на факультете %s, номер зачётной книжки %d \n", stud[i].famil, stud[i].name,
+			stud[i].facult, stud[i].Nomzach);
+	}
+	printf("\nПо какому параметру вести поиск?\n1- Фамилия\n2 - Имя\n3 - Факультет\n4 - Зач. книжка\n");
+	scanf("%d", &num_search);	
+	if (num_search == 1) {
+		printf("Введите фамилию студента - ");
+		scanf("%s", &search);
+		printf("\n");
+		for (i = 0; i < 3; i++)
+		{
+			if (strcmp(stud[i].famil, search) == 0) {
+				printf("Cтудент %s %s обучается на факультете %s, номер зачётной книжки %d \n", stud[i].famil, stud[i].name,
+					stud[i].facult, stud[i].Nomzach);
+			}
+		}
+	}
+	else if (num_search == 2) {
+		printf("Введите имя студента - ");
+		scanf("%s", &search);
+		printf("\n");
+		for (i = 0; i < 3; i++)
+		{
+			if (strcmp(stud[i].name, search) == 0) {
+				printf("Cтудент %s %s обучается на факультете %s, номер зачётной книжки %d \n", stud[i].famil, stud[i].name,
+					stud[i].facult, stud[i].Nomzach);
+			}
+		}
+	}
+	else if (num_search == 3) {
+		printf("Введите факультет студента - ");
+		scanf("%s", &search);
+		printf("\n");
+		for (i = 0; i < 3; i++)
+		{
+			if (strcmp(stud[i].facult, search) == 0) {
+				printf("Cтудент %s %s обучается на факультете %s, номер зачётной книжки %d \n", stud[i].famil, stud[i].name,
+					stud[i].facult, stud[i].Nomzach);
+			}
+		}
+	}
+	else if (num_search == 4) {
+		printf("Введите номер зач. книжки студента - ");
+		scanf("%d", &zach);
+		printf("\n");
+		for (i = 0; i < 3; i++)
+		{
+			if (stud[i].Nomzach == zach) {
+				printf("Cтудент %s %s обучается на факультете %s, номер зачётной книжки %d \n", stud[i].famil, stud[i].name,
+					stud[i].facult, stud[i].Nomzach);
+			}
+		}
+	}
+	else {
+		printf("По вашему запросу ничего не найдено");
+	}
+				getchar();
+			getchar();
+}
